@@ -24,4 +24,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  onLogout(){
+    console.log("OnSubmit");
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
 }
