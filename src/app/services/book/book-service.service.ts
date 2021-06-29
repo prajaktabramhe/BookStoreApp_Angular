@@ -18,16 +18,19 @@ export class BookServiceService {
   ) { }
 
   registerService(data: any){
-    return this.http.Post(this.url + '/register', data, this.options);
+    return this.http.post(this.url + '/register', data, this.options);
   }
   loginService(data: any) {
-    return this.http.Post(this.url + '/login', data, this.options);
+    return this.http.post(this.url + '/login', data, this.options);
   }
   forgotPasswordService(data: any){
-    return this.http.Put(this.url + '/forgotpassword', data, '');
+    return this.http.put(this.url + '/forgotpassword', data, '');
   }
   getAllBook(){
-    return this.http.get(this.bookurl + '/getBooks', {...this.options, headers : new HttpHeaders().set("token", 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4fQ.SwCsvul6q9fQCv6tZ9gF7_wHwXKzed2wJjkK8E1HSlA') });
+    return this.http.get(this.bookurl + '/getBooks', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  }
+  getallcart(){
+    return this.http.get(this.bookurl + '/getAllUserCart', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
 }
 
