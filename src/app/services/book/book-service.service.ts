@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { cartDTO } from 'src/app/model/cartDTO';
 import { HttpService } from 'src/app/services/http/http.service';
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class BookServiceService {
   };
   url: any = "/user";
   bookurl: string = "/book"
+  carturl: string = "/cart"
 
   constructor(
     private http : HttpService
@@ -29,8 +31,11 @@ export class BookServiceService {
   getAllBook(){
     return this.http.get(this.bookurl + '/getBooks', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
-  getallcart(){
-    return this.http.get(this.bookurl + '/getAllUserCart', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  getAllUserCart(){
+    return this.http.get(this.carturl + '/getAllUserCart', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  }
+  addToCart(data : cartDTO){
+    return this.http.post(this.carturl + '/addToCart', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
 }
 

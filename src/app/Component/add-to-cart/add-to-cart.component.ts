@@ -9,20 +9,22 @@ import { BookServiceService } from 'src/app/services/book/book-service.service';
   styleUrls: ['./add-to-cart.component.scss']
 })
 export class AddToCartComponent implements OnInit {
-
-  bookList: any;
+  cartList: any;
   constructor(private bookService: BookServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getAllCarts();
+   this.getCartDetails();
 }
 
-getAllCarts(){
-  this.bookService.getallcart().subscribe((res: any) => {
+
+getCartDetails(){
+  console.log("checked cart");
+  this.bookService.getAllUserCart().subscribe((res: any) => {
     console.log(res);
-    this.bookList = res;
+    this.cartList = res;
   })
 }
+
 
   onLogout(){
     console.log("OnSubmit");

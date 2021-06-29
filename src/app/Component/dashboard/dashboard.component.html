@@ -6,8 +6,8 @@
       <span style="padding-left: 10px;">Bookstore</span>
       <span class="example-spacer"></span>
      
-     <div class="cart">
-      <span >cart</span>
+     <div class="cart" (click)="redirectToCart()">
+      <span >{{cartCount}}cart</span>
       <span>
         <img src="../../../assets/imaage/supermarket.svg" alt="supermarketlogo" >
       </span>
@@ -34,7 +34,7 @@
         <mat-card-title>Rs.{{book.price}}</mat-card-title>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button class="add-bag"> <a routerLink="/addtocart" class="add-bag">ADD TO BAG</a></button>
+        <button mat-raised-button class="add-bag" (click)="addItemToBag(book.id)">{{isAdded(book.id) ? "Added" : "ADD TO BAG"}}</button>
         
         <button mat-raised-button class="add-wishlist">WISHLIST</button>
       </mat-card-actions>
