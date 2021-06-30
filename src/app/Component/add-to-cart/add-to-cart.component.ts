@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookServiceService } from 'src/app/services/book/book-service.service';
-
+const EMAIL_REGEX = new RegExp("^([a-zA-Z0-9+-])+(\\.?[a-zA-Z0-9_+-])*@[a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?$")
 
 @Component({
   selector: 'app-add-to-cart',
@@ -9,8 +10,24 @@ import { BookServiceService } from 'src/app/services/book/book-service.service';
   styleUrls: ['./add-to-cart.component.scss']
 })
 export class AddToCartComponent implements OnInit {
+  AddCart:FormGroup;
   cartList: any;
-  constructor(private bookService: BookServiceService, private router: Router) { }
+  showCustomerDetails = false;
+  constructor(private bookService: BookServiceService, private router: Router,  formBuilder:FormBuilder,) {
+    
+    this.AddCart = formBuilder.group(
+      {
+        firstName: ['', [Validators.required], ],
+        phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+        pincode: ['',[Validators.required,Validators.maxLength(6)]],
+        locality: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+        address: ['', [Validators.required], ],
+        city: ['', [Validators.required], ],
+        landmark: ['', [Validators.required], ],
+        type: ['', Validators.required]
+      }
+    )
+   }
 
   ngOnInit(): void {
    this.getCartDetails();
@@ -25,10 +42,20 @@ getCartDetails(){
   })
 }
 
+  placeOrder()
+  {
+    this.showCustomerDetails = true;
+  }
 
-  onLogout(){
+  continue(){
+
+  }
+  onLogout()
+  {
     console.log("OnSubmit");
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+
+
 }

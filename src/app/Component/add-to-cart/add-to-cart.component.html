@@ -23,37 +23,158 @@
     </mat-toolbar>
   </div>
 
-  <div class="sub-class">
+  
+  <div class="card-container"  *ngFor="let book of cartList">
     <!-- image -->
-    <div class="info">
+    <div class="info" fxLayout="row wrap" fxLayoutGap="16px grid">
       image
-      <mat-card class="example-card" *ngFor="let book of cartList">
-        <mat-card-header class="card-header-text">
+      <mat-card class="example-card" fxLayout="row wrap">
+        <mat-card-header class="card-header-text" fxLayout="row wrap">
           <div class="card-header-text image-header">
-            <img
-              mat-card-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt="Photo of a Shiba Inu"
-            />
+            <mat-card-header class="card-header-text">
+              <div class="card-header-text image-header">
+                <img mat-card-image src="../../../assets/imaage/bookimage/{{book.book.logo}}.png" alt="Images">
+              </div>
+            </mat-card-header>
             <!-- <img mat-card-image src="../../../assets/imaage/bookimage/{{book.logo}}.png" alt="Photo of a Shiba Inu"> -->
           </div>
         </mat-card-header>
       </mat-card>
     </div>
-    <div>
+    <div class="name-space">
       <!-- info -->
-      <div>Prajakta Bramhe</div>
-      <div>
-        <a mat-button href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-      <div class="placed-order">
-        <button mat-raised-button class="primary">Placed Order</button>
-      </div>
+      <div fxLayout="row wrap" > 
+         <mat-card-content fxLayoutAlign = "center center">
+          <mat-card-title>{{book.book.bookName}}</mat-card-title>
+          <mat-card-subtitle>{{book.book.author}}</mat-card-subtitle>
+          <mat-card-title>Rs.{{book.book.price}}</mat-card-title>
+        </mat-card-content>
+      
+    </div>
+ 
+     
     </div>
 
+    <div class="placed-order" fxLayout="row wrap">
+      <button mat-raised-button class="primary" (click)="placeOrder()">Placed Order</button>
+    </div>
+  </div>
+  <mat-card class="card-container">Simple card</mat-card>
+</div>
 
-  </div>
-  <div class="sub-class1">
-    Customer Details
-  </div>
+<!-- 
+  form
+ -->
+ 
+ 
+ 
+ <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center" >
+  <mat-card class="box login_card" >
+   
+    <mat-card class="title-header">Customer Details</mat-card>
+    
+    <form class="example-form" [formGroup] = "AddCart" (ngSubmit)="continue()">
+      <mat-card-content>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input type="text" matInput formControlName="firstName">
+              <mat-error *ngIf="!AddCart.controls['firstName'].valid">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input type="tel" matInput formControlName="phoneNumber">
+              <mat-error *ngIf="!AddCart.controls['phoneNumber'].valid">
+                Phone number is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+       <div class="row">
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Pincode</mat-label>
+                <input type="text" matInput placeholder="25" formControlName="pincode">
+              <mat-error *ngIf="!AddCart.controls['pincode'].valid">
+                Pincode is Required
+              </mat-error>   
+              </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Locality</mat-label>
+              <input type="text" matInput placeholder="555-555-1234" formControlName="locality">
+              <mat-error *ngIf="!AddCart.controls['locality'].valid">
+                Locality is required
+              </mat-error>  
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Address</mat-label>
+              <input type="text" matInput placeholder="email" formControlName="address">
+              <mat-error *ngIf="!AddCart.controls['address'].valid">
+                Address is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>City/Town</mat-label>
+              <input type="text" matInput placeholder="email" formControlName="city">
+              <mat-error *ngIf="!AddCart.controls['city'].valid">
+                City/Town is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>LandMark</mat-label>
+              <input type="text" matInput placeholder="Password" formControlName="landmark">
+              <mat-error *ngIf="!AddCart.controls['landmark'].valid">
+                LandMark is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+         
+        </div>
+        <div class="label-space">
+          <label for="gender">Type:</label>
+        </div>
+        
+        <div>
+          <span>
+            <input id="home" type="radio" value="Home" name="type" formControlName="type">
+            <label for="male">Home</label>
+          </span>
+  
+         <span class="space">
+          <input id="work" type="radio" value="Work" name="type" formControlName="type">
+          <label for="female">Work</label>  
+         </span>
+
+          <span class="space">
+            <input id="other" type="radio" value="Other" name="type" formControlName="type">
+            <label for="female">Other</label>
+          </span>
+        
+        
+       </div> <br>
+       <button mat-flat-button class="checkout-btn">Checkout</button>
+      </div>
+      </mat-card-content>
+       
+      
+    </form>
+  </mat-card>
 </div>
