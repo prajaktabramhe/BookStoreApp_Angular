@@ -43,6 +43,15 @@ height: 300px;
 .mat-card-image {
   width: 75%;
 }
+.example-card1 {
+
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #707070;
+border-radius: 1px;
+margin-left: 10% !important;
+height: 300px;
+    overflow: scroll;
+}
 .card-header-text {
   margin-left: 0px;
   display: flex;
@@ -192,6 +201,7 @@ margin-bottom: 5%;
 .space{
   padding: 50px;
 }
+
 .label-space{
   margin-bottom: 2%;
 }
@@ -208,6 +218,14 @@ margin-bottom: 5%;
     height: 40px;
     align-items: center;
 }
+.cart-header1 {
+  position: sticky;
+  top: -16px;
+    background: #fff;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+}
 .cart-action {
   position: sticky;
     /* float: right; */
@@ -216,4 +234,18 @@ margin-bottom: 5%;
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
+}
+.space-btn-left{
+  margin-right: 10px;
+  align-self: center;
+ }
+.space-btn-right{
+  margin-left: 10px;
+  align-self: center;
+}
+.mat-stroked-button {
+  line-height: 20px;
+  padding-top: 3%;
+  padding-bottom: 1%;
+ 
 }

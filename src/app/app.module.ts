@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './Component/forgot-password/forgot-password.component';
-import { AddToCartComponent } from './Component/add-to-cart/add-to-cart.component';
+import { AddToCartComponent, } from './Component/add-to-cart/add-to-cart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AuthGuardService } from './services/auth-guard.service';
 import {MatButtonModule} from '@angular/material/button';

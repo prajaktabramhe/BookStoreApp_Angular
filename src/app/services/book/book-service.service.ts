@@ -37,6 +37,13 @@ export class BookServiceService {
   addToCart(data : cartDTO){
     return this.http.post(this.carturl + '/addToCart', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
+  removeCartItem(data : cartDTO){
+    return this.http.post(this.carturl + '/removeCartItem', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  }
+
+  updateCartItem(data : cartDTO){
+    return this.http.update(this.carturl + '/updateCartItem', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  }
 }
 
 
