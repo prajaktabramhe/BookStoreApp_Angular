@@ -1,27 +1,7 @@
 <div class="main-class">
   <!-- header -->
-  <div fxLayoutAlign="center center" class="header">
-    <mat-toolbar class="headercolor">
-      <span>
-        <img src="../../../assets/imaage/education.svg" alt="edicationlogo" />
-      </span>
-      <span style="padding-left: 10px">Bookstore</span>
-      <span class="example-spacer"></span>
-      <div class="cart">
-        <span>cart</span>
-        <span>
-          <img
-            src="../../../assets/imaage/supermarket.svg"
-            alt="supermarketlogo"
-          />
-        </span>
-      </div>
-      <div class="logout">
-        <button mat-raised-button (click)="onLogout()">Logout</button>
-      </div>
-    </mat-toolbar>
-  </div>
-  
+  <app-header></app-header>
+   
   <mat-card class="example-card">
       <mat-card-header class="cart-header">
           My cart(2)

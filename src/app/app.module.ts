@@ -19,6 +19,7 @@ import { AddToCartComponent, } from './Component/add-to-cart/add-to-cart.compone
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AuthGuardService } from './services/auth-guard.service';
 import {MatButtonModule} from '@angular/material/button';
+import { HeaderComponent } from './Component/header/header.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {MatButtonModule} from '@angular/material/button';
     RegisterComponent,
     ForgotPasswordComponent,
     AddToCartComponent,
+    HeaderComponent,
 
   ],
   imports: [
