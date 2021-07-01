@@ -64,9 +64,8 @@ export class DashboardComponent implements OnInit {
   }
   isAdded(id:any) {
     var doesExist = this.cartList?.some(function(ele) {
-      return ele.bookId === id;
+      return ele.book.id === id;
   });
-  // this.getCartDetails();
   return doesExist;
   
   }
