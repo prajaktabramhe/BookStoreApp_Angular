@@ -7,7 +7,6 @@
       </span>
       <span style="padding-left: 10px">Bookstore</span>
       <span class="example-spacer"></span>
-
       <div class="cart">
         <span>cart</span>
         <span>
@@ -22,58 +21,32 @@
       </div>
     </mat-toolbar>
   </div>
-
   
-  <div class="card-container"  *ngFor="let book of cartList">
-    <!-- image -->
-    <div class="info" fxLayout="row wrap" fxLayoutGap="16px grid">
-      image
-      <mat-card class="example-card" fxLayout="row wrap">
-        <mat-card-header class="card-header-text" fxLayout="row wrap">
-          <div class="card-header-text image-header">
-            <mat-card-header class="card-header-text">
-              <div class="card-header-text image-header">
-                <img mat-card-image src="../../../assets/imaage/bookimage/{{book.book.logo}}.png" alt="Images">
-              </div>
-            </mat-card-header>
-            <!-- <img mat-card-image src="../../../assets/imaage/bookimage/{{book.logo}}.png" alt="Photo of a Shiba Inu"> -->
-          </div>
-        </mat-card-header>
-      </mat-card>
-    </div>
-    <div class="name-space">
-      <!-- info -->
-      <div fxLayout="row wrap" > 
-         <mat-card-content fxLayoutAlign = "center center">
-          <mat-card-title>{{book.book.bookName}}</mat-card-title>
-          <mat-card-subtitle>{{book.book.author}}</mat-card-subtitle>
-          <mat-card-title>Rs.{{book.book.price}}</mat-card-title>
+  <mat-card class="example-card">
+    <mat-card-header class="cart-header">
+      My cart(2)
+    </mat-card-header>
+    <div *ngFor="let book of cartList">
+    <div class="book-container">
+    <mat-card-header class="card-header-text image-header">
+      <img mat-card-image src="../../../assets/imaage/bookimage/{{book.book.logo}}.png" alt="Images">
+    </mat-card-header>
+      <mat-card-content style="margin-left: 10%; align-self: center;">
+        <mat-card-title>{{book.book.bookName}}</mat-card-title>
+        <mat-card-subtitle>{{book.book.author}}</mat-card-subtitle>
+        <mat-card-title>Rs.{{book.book.price}}</mat-card-title>
         </mat-card-content>
-      
-    </div>
- 
-     
-    </div>
-
-    <div class="placed-order" fxLayout="row wrap">
-      <button mat-raised-button class="primary" (click)="placeOrder()">Placed Order</button>
-    </div>
   </div>
-  <mat-card class="card-container">Simple card</mat-card>
-</div>
-
-<!-- 
-  form
- -->
- 
- 
- 
- <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center" >
-  <mat-card class="box login_card" >
-   
-    <mat-card class="title-header">Customer Details</mat-card>
-    
-    <form class="example-form" [formGroup] = "AddCart" (ngSubmit)="continue()">
+  </div>
+  <mat-card-actions class="cart-action" *ngIf="!showCustomerDetails">
+    <button mat-raised-button class="primary" (click)="placeOrder()">Placed Order</button>
+  </mat-card-actions>
+  </mat-card>
+  <!-- <mat-card class="card-container" >Simple card</mat-card> -->
+  <mat-card  class="card-container" >
+    <!-- <mat-card class="title-header">Customer Details</mat-card> -->
+    <mat-card-title>Customer Details</mat-card-title>
+    <form class="example-form" [formGroup] = "AddCart" (ngSubmit)="continue()" *ngIf="showCustomerDetails">
       <mat-card-content>
       <div class="container">
         <div class="row">
@@ -146,35 +119,35 @@
               </mat-error>
             </mat-form-field>
           </div>
-         
         </div>
         <div class="label-space">
           <label for="gender">Type:</label>
         </div>
-        
         <div>
           <span>
             <input id="home" type="radio" value="Home" name="type" formControlName="type">
             <label for="male">Home</label>
           </span>
-  
          <span class="space">
           <input id="work" type="radio" value="Work" name="type" formControlName="type">
           <label for="female">Work</label>  
          </span>
-
           <span class="space">
             <input id="other" type="radio" value="Other" name="type" formControlName="type">
             <label for="female">Other</label>
           </span>
-        
-        
        </div> <br>
        <button mat-flat-button class="checkout-btn">Checkout</button>
       </div>
       </mat-card-content>
-       
-      
     </form>
   </mat-card>
 </div>
+
+<!-- 
+  form
+ -->
+ 
+ 
+ 
+  
