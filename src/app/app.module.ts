@@ -20,6 +20,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { AuthGuardService } from './services/auth-guard.service';
 import {MatButtonModule} from '@angular/material/button';
 import { HeaderComponent } from './Component/header/header.component';
+import { FooterComponent } from './Component/footer/footer.component';
+import { PlaceOrderComponent } from './Component/place-order/place-order.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { HeaderComponent } from './Component/header/header.component';
     ForgotPasswordComponent,
     AddToCartComponent,
     HeaderComponent,
+    FooterComponent,
+    PlaceOrderComponent,
 
   ],
   imports: [

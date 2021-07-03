@@ -1,0 +1,32 @@
+ <!-- header -->
+ <app-header></app-header>
+<div fxLayoutAlign = "center center">
+    
+<img src="../../../assets/imaage/place-order.svg" alt="Order Successful">
+<div>
+    <h3 class="text">
+        <div style="text-align: center;">Hurraay!!! Your order is confirmed.</div>
+        <div style="text-align: center;">The order id is #12234. Save the order id for </div>
+        <div style="text-align: center;">
+            further communication
+        </div>
+    </h3>
+    <br/>
+    <table border="1" *ngFor="let order of orderList">
+      <tr>
+        <th>Email Us</th>
+        <th>Contact Us</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>{{order.user.emailId}}</td>
+        <td>{{order.user.firstName}}</td>
+        <td>{{order.address}}</td>
+      </tr>
+      </table>
+    <button mat-flat-button color="primary" (click)="continueShopping()">Continue shopping</button>
+</div>
+</div>
+<div class="footer-space">
+</div>
+<app-footer></app-footer>

@@ -14,6 +14,7 @@ export class BookServiceService {
   url: any = "/user";
   bookurl: string = "/book"
   carturl: string = "/cart"
+  orderurl: string = "/order"
 
   constructor(
     private http : HttpService
@@ -31,18 +32,26 @@ export class BookServiceService {
   getAllBook(){
     return this.http.get(this.bookurl + '/getBooks', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
+
   getAllUserCart(){
     return this.http.get(this.carturl + '/getAllUserCart', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
   addToCart(data : cartDTO){
     return this.http.post(this.carturl + '/addToCart', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
-  removeCartItem(data : cartDTO){
-    return this.http.post(this.carturl + '/removeCartItem', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  removeCartItem(cartId){
+    return this.http.delete(this.carturl + `/removeCartItem/?cartId=${cartId}`, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
 
   updateCartItem(data : cartDTO){
     return this.http.update(this.carturl + '/updateCartItem', data, { ...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  }
+
+  getAllUserOrders(){
+    return this.http.get(this.orderurl + '/getAllUserOrders', {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
+  }
+  placeOrders(data){
+    return this.http.post(this.orderurl + '/placeOrder', data, {...this.options, headers : new HttpHeaders().set("token", localStorage.getItem("Token"))});
   }
 }
 

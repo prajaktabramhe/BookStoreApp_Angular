@@ -20,13 +20,13 @@
                     <button mat-stroked-button class="space-btn">{{quantityObj[cart.id]}}</button>
                   <a color="primary" class="space-btn-right" (click)="increment(cart.id, cart.book.id)"><mat-icon>add_circle</mat-icon></a>
                 </mat-card-title> 
-                  <!-- <a mat-button (click)="removeFromCart(book.bookId)">Remove</a> -->
+                  <a mat-button (click)="removeFromCart(cart.id)">Remove</a>
               </mat-card-content>
           </div>
+          <mat-card-actions class="cart-action" *ngIf="!showCustomerDetails">
+            <button mat-raised-button class="primary" (click)="placeOrder(cart)">Placed Order</button>
+          </mat-card-actions>
       </div>
-      <mat-card-actions class="cart-action" *ngIf="!showCustomerDetails">
-        <button mat-raised-button class="primary" (click)="placeOrder()">Placed Order</button>
-      </mat-card-actions>
     </mat-card>
 
 
@@ -139,15 +139,16 @@
               <mat-card-header class="cart-header1">
                 My cart(2)
               </mat-card-header>
-              <div *ngFor="let book of cartList">
+              <div >
                   <div class="book-container">
                     <mat-card-header class="card-header-text image-header">
-                      <img mat-card-image src="../../../assets/imaage/bookimage/{{book.book.logo}}.png" alt="Images">
+                      <img mat-card-image src="../../../assets/imaage/bookimage/{{selectedCart.book.logo}}.png" alt="Images">
                     </mat-card-header>
                     <mat-card-content style="margin-left: 10%; align-self: center;">
-                      <mat-card-title>{{book.book.bookName}}</mat-card-title>
-                      <mat-card-subtitle>{{book.book.author}}</mat-card-subtitle>
-                      <mat-card-title>Rs.{{book.book.price}}</mat-card-title>
+                      <mat-card-title>{{selectedCart.book.bookName}}</mat-card-title>
+                      <mat-card-subtitle>{{selectedCart.book.author}}</mat-card-subtitle>
+                      <mat-card-title>Rs.{{selectedCart.book.price}}</mat-card-title>
+                      <mat-card-title>Quantity: {{selectedCart.quantity}}</mat-card-title>
                     </mat-card-content>
                   </div>
              </div>
@@ -158,7 +159,10 @@
       </div>
 </mat-card>
 </div>
-
+<div class="footer-space">
+  
+</div>
+<app-footer></app-footer>
 
  
  

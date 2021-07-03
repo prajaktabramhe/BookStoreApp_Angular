@@ -5,6 +5,7 @@ import { AddToCartComponent } from './Component/add-to-cart/add-to-cart.componen
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './Component/forgot-password/forgot-password.component';
 import { LoginComponent } from './Component/login/login.component';
+import { PlaceOrderComponent } from './Component/place-order/place-order.component';
 import { RegisterComponent } from './Component/register/register.component';
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: 'forgotpassword', component: ForgotPasswordComponent},
   {path: 'books', component: DashboardComponent, canActivate: [AuthenticationGuard]},
   {path: 'addtocart', component: AddToCartComponent, canActivate: [AuthenticationGuard]},
-  
+  {path: 'placeorder', component: PlaceOrderComponent, canActivate: [AuthenticationGuard]},
 ];
 
 @NgModule({

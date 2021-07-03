@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { cartDTO } from 'src/app/model/cartDTO';
+import { cartDTO, orderDTO } from 'src/app/model/cartDTO';
 import { BookServiceService } from 'src/app/services/book/book-service.service';
 const EMAIL_REGEX = new RegExp("^([a-zA-Z0-9+-])+(\\.?[a-zA-Z0-9_+-])*@[a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?$")
 
@@ -18,8 +18,11 @@ export class AddToCartComponent implements OnInit {
   showOrderDetails = false;
   quantityObj: any = {};
   quantity: number = 0; 
+  orderObj: any = {};
+  price: any;
+  selectedCart:any;
+  dto = new orderDTO();
   constructor(private bookService: BookServiceService, private router: Router,  formBuilder:FormBuilder,) {
-    
     this.AddCart = formBuilder.group(
       {
         firstName: ['', [Validators.required], ],
@@ -53,19 +56,31 @@ getCartDetails(){
   })
 }
 
-  placeOrder()
+  placeOrder(cart:any)
   {
+    this.selectedCart = cart;
+    this.dto.bookId = cart.book.id;
+    this.dto.price = cart.book.price;
+    this.dto.quantity = cart.quantity;
+    
     this.showCustomerDetails = true;
   }
   checkout(){
-    
+   //API call
+   this.bookService.placeOrders(this.dto).subscribe((res: any) => {
+    if (res.statusCode === 200) {
+      this.router.navigate(['/placeorder']);
+    }  
+  },(error) => {
+    console.log(error);
+  });
   }
   continue(){
+    this.dto.address = this.AddCart.value.address;
     this.showOrderDetails = true;
   }
   onLogout()
   {
-    console.log("OnSubmit");
     localStorage.clear();
     this.router.navigate(['/login']);
   }
@@ -88,6 +103,17 @@ getCartDetails(){
 
   updateCart(dto:cartDTO){
     this.bookService.updateCartItem(dto).subscribe((res: any) => {
+      if (res.statusCode === 200) {
+        this.getCartDetails();
+      }  
+    },(error) => {
+      console.log(error);
+      
+    });
+  }
+
+  removeFromCart(id) {
+    this.bookService.removeCartItem(id).subscribe((res: any) => {
       if (res.statusCode === 200) {
         this.getCartDetails();
       }  
