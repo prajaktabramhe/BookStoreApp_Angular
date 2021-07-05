@@ -16,12 +16,14 @@ export class AddToCartComponent implements OnInit {
   cartList: any;
   showCustomerDetails = false;
   showOrderDetails = false;
+  isCheckout: Boolean = false
   quantityObj: any = {};
   quantity: number = 0; 
   orderObj: any = {};
   price: any;
   selectedCart:any;
   dto = new orderDTO();
+  checkoutData : any = {};
   constructor(private bookService: BookServiceService, private router: Router,  formBuilder:FormBuilder,) {
     this.AddCart = formBuilder.group(
       {
@@ -69,7 +71,10 @@ getCartDetails(){
    //API call
    this.bookService.placeOrders(this.dto).subscribe((res: any) => {
     if (res.statusCode === 200) {
-      this.router.navigate(['/placeorder']);
+      this.checkoutData.address = this.AddCart.value.address;
+      this.checkoutData.mobile = this.AddCart.value.phoneNumber;
+      this.checkoutData.name = this.AddCart.value.firstName;
+      this.isCheckout = true;
     }  
   },(error) => {
     console.log(error);

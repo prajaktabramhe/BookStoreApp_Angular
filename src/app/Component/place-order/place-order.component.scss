@@ -1,22 +1,12 @@
-img {
-    height: 300px;
-    margin-left: 550px;
-    margin-top: 50px;
-}
-
-// .text {
-//     margin-left: 500px;
-//     margin-top: 50px; 
-// }
 
 .mat-flat-button {
-    margin-left: 600px;
     margin-bottom: 20px;
 }
 
 table {
-    margin-left: 380px;
-    margin-bottom: 25px;
+    position: relative;
+    left: 50%;
+    transform: translate(-55%, -10%);
 }
 
 th {
@@ -26,3 +16,18 @@ th {
 td {
     padding: 15px;
 }
+
+.img-container {
+    position: relative;
+    text-align: center;
+    color: #333232;
+}
+.centered {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'lato';
+  }

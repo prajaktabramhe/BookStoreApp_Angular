@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'forgotpassword', component: ForgotPasswordComponent},
   {path: 'books', component: DashboardComponent, canActivate: [AuthenticationGuard]},
   {path: 'addtocart', component: AddToCartComponent, canActivate: [AuthenticationGuard]},
-  {path: 'placeorder', component: PlaceOrderComponent, canActivate: [AuthenticationGuard]},
+  // {path: 'placeorder', component: PlaceOrderComponent, canActivate: [AuthenticationGuard]},
 ];
 
 @NgModule({
